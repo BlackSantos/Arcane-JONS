@@ -291,8 +291,14 @@ function closeModal() {
     const gameContent = document.getElementById('game-content');
     gameContent.classList.remove('blur');
 
-    const pauseTab = document.getElementById('pause-tab');
-    pauseTab.style.display = 'block';
+    // Проверяем, находится ли пользователь не в главном меню
+    const mainMenu = document.getElementById('main-menu');
+    if (!mainMenu || mainMenu.style.display === 'none') {
+        const pauseTab = document.getElementById('pause-tab');
+        if (pauseTab) {
+            pauseTab.style.display = 'block';
+        }
+    }
 
     if (typeof modalOnCloseCallback === 'function') {
         modalOnCloseCallback();

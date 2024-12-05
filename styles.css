@@ -1,0 +1,629 @@
+/* styles.css */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Century Gothic';
+    src: url('centurygothic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    margin: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at top left, #5c4108, #2b0202, #000000);
+    color: white;
+    font-family: 'Century Gothic', sans-serif;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#game-content {
+    transition: filter 0.3s ease;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blur {
+    filter: blur(5px);
+}
+
+.dialogue {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-in-out;
+    width: 100%;
+}
+
+.dialogue p {
+    margin: 10px 0;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.choice {
+    color: orange;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1.8em;
+    cursor: pointer;
+    animation: fadeIn 1.5s ease-in-out;
+    transition: all 0.3s ease;
+    min-width: 400px;
+    max-width: 550px;
+    padding: 5px 10px;
+    word-wrap: break-word;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    white-space: normal;
+}
+
+.choice:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+    background-color: transparent;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1s ease-in-out;
+}
+
+.pause-tab {
+    position: fixed;
+    top: 25%;
+    right: -65px;
+    transform: translateY(-50%);
+    background: #FFA500;
+    color: white;
+    padding: 10px 10px;
+    cursor: pointer;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1.2em;
+    border-radius: 10px 0 0 10px;
+    transition: right 0.5s ease;
+    z-index: 1001;
+    white-space: nowrap;
+}
+
+.pause-tab:hover {
+    right: 0;
+}
+
+.pause-menu,
+.main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-family: 'Century Gothic', sans-serif;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
+    backdrop-filter: blur(5px);
+    padding-top: 20px;
+}
+
+.menu-header {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
+    width: 100%;
+}
+
+.menu-header h1 {
+    font-size: 6em;
+    color: #FFA500;
+    margin: 0;
+    font-family: 'Century Gothic', sans-serif;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    animation: fadeIn 1s ease-in-out, headerPulse 5s infinite;
+}
+
+.menu-header h2 {
+    font-size: 2em;
+    color: #FFFFFF;
+    margin: 5px 0 0 0;
+    font-family: 'Century Gothic', sans-serif;
+    font-weight: normal;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.pause-menu button,
+.main-menu button {
+    color: orange;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1.8em;
+    cursor: pointer;
+    animation: fadeIn 1s ease-in-out;
+    transition: all 0.3s ease;
+    min-width: 400px;
+    max-width: 600px;
+    padding: 5px 10px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    white-space: nowrap;
+}
+
+.pause-menu button:hover,
+.main-menu button:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+    background-color: transparent;
+}
+
+.pause-menu input[type="range"],
+.main-menu input[type="range"] {
+    -webkit-appearance: none;
+    width: 300px;
+    height: 8px;
+    background: #ffcc00;
+    outline: none;
+    opacity: 0.8;
+    transition: opacity .15s ease-in-out;
+}
+
+.pause-menu input[type="range"]::-webkit-slider-thumb,
+.main-menu input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: orange;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.pause-menu input[type="range"]:hover,
+.main-menu input[type="range"]:hover {
+    opacity: 1;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #ffcc00;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #ffcc00;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.pause-dialogue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5em;
+    width: 100%;
+    max-width: 600px;
+}
+
+.pause-dialogue label {
+    margin-bottom: 5px;
+}
+
+.pause-menu .pause-dialogue input,
+.pause-menu .pause-dialogue label,
+.main-menu .pause-dialogue input,
+.main-menu .pause-dialogue label {
+    color: white;
+}
+
+.choices {
+    scrollbar-width: none;
+}
+
+.choices::-webkit-scrollbar {
+    display: none;
+}
+
+.episode-selection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background: radial-gradient(circle at top left, #5c4108, #2b0202, #000000);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.episode-row {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.episode-row:last-child {
+    margin-bottom: 0;
+}
+
+.episode {
+    background-color: rgba(0, 0, 0, 0.7);
+    flex: 1;
+    margin: 0 10px;
+    border-radius: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.episode-row .episode:first-child {
+    margin-left: 0;
+}
+
+.episode-row .episode:last-child {
+    margin-right: 0;
+}
+
+.episode h2, .episode p {
+    margin: 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 90%;
+}
+
+.episode h2 {
+    font-size: 1.5em;
+    color: orange;
+    -webkit-line-clamp: 2;
+}
+
+.episode p {
+    font-size: 1em;
+    color: white;
+    margin-top: 10px;
+    -webkit-line-clamp: 3;
+}
+
+.episode:hover {
+    background-color: rgba(255, 165, 0, 0.2);
+    transform: scale(1.02);
+}
+
+.episode:active {
+    transform: scale(0.98);
+}
+
+@keyframes headerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.menu-header h1:hover,
+.menu-header h2:hover {
+    color: #FFD700;
+    transition: color 0.3s ease;
+}
+
+
+.scene-appear {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.text-fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.text-fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 64px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    width: 80%;
+    max-width: 500px;
+    animation: fadeInModal 0.5s ease-in-out;
+}
+
+.modal-content p {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+#modal-close-button {
+    background-color: #FFA500;
+    color: white;
+    border: none;
+    border-radius: 32px;
+    padding: 10px 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#modal-close-button:hover {
+    background-color: #ffcc00;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.results-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-family: 'Century Gothic', sans-serif;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1500;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; 
+    animation: fadeInResults 1s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInResults {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.results-screen h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #FFA500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.results-content {
+    width: 80%;
+    min-width: 800px;
+    max-width: 1400px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-auto-flow: column;
+    grid-gap: 20px;
+}
+
+.result-card {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 10px 0;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.result-card:hover {
+    transform: scale(1.02);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.result-card h2 {
+    font-size: 1.8em;
+    color: #FFA500;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.6em;
+    color: white;
+}
+
+.custom-checkbox {
+    width: 50px;
+    height: 50px;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 8px;
+    position: relative;
+    cursor: not-allowed;
+    background-color: transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.custom-checkbox:checked {
+    background-color: transparent;
+}
+
+.custom-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    width: 24px; 
+    height: 48px;
+    border: solid #FFA500;
+    border-width: 0 8px 8px 0;
+    transform: rotate(45deg);
+}
+
+.return-button {
+    padding: 10px 20px;
+    font-size: 1.5em;
+    background-color: #FFA500;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: center;
+    margin-top: 20px;
+}
+
+.return-button:hover {
+    background-color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.main-menu button,
+.pause-menu button {
+    color: orange;
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 1.8em;
+    cursor: pointer;
+    animation: fadeIn 1s ease-in-out;
+    transition: all 0.3s ease;
+    min-width: 400px;
+    max-width: 600px;
+    padding: 5px 10px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    white-space: nowrap;
+}
+
+.main-menu button:hover,
+.pause-menu button:hover {
+    color: #ffcc00;
+    transform: scale(1.05);
+    background-color: transparent;
+}
+
+.results-screen .options-container .option-item label {
+    cursor: default;
+}
+
+.episode.locked {
+    position: relative;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.locked-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    border-radius: 8px;
+}

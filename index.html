@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane: Junior Officer Nolen's Story</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <style>
+        .fan-notice {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            color: gray;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-content">
+        <div class="dialogue" id="dialogue"></div>
+        <div class="choices" id="choices"></div>
+    </div>
+
+    <div class="pause-tab" id="pause-tab" onclick="togglePauseMenu()">Menu</div>
+
+    <div class="pause-menu" id="pause-menu">
+        <div class="menu-header">
+            <h1>ARCANE</h1>
+            <h2>Junior Officer Nolen's Story</h2>
+        </div>
+
+        <button onclick="togglePauseMenu()">Continue Game</button>
+        <button onclick="saveGame()">Save Game</button>
+        <button onclick="loadGame()">Load Game</button>
+        <button onclick="returnToMainMenu()">Return to Main Menu</button>
+        <div class="pause-dialogue">
+            <label for="volume">Volume Control:</label>
+            <input type="range" id="volume" name="volume" min="0" max="100">
+        </div>
+        <div class="pause-dialogue">
+            <label for="fullscreen">Fullscreen Mode:</label>
+            <label class="toggle-switch">
+                <input type="checkbox" id="fullscreen" name="fullscreen" onclick="toggleFullscreen()">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="main-menu" id="main-menu">
+        <div class="menu-header">
+            <h1>ARCANE</h1>
+            <h2>Junior Officer Nolen's Story</h2>
+        </div>
+
+        <button onclick="newGame()">New Game</button>
+        <button onclick="loadGame()">Load Game</button>
+        <div class="pause-dialogue">
+            <label for="volume-main">Volume Control:</label>
+            <input type="range" id="volume-main" name="volume-main" min="0" max="100">
+        </div>
+        <div class="pause-dialogue">
+            <label for="fullscreen-main">Fullscreen Mode:</label>
+            <label class="toggle-switch">
+                <input type="checkbox" id="fullscreen-main" name="fullscreen-main" onclick="toggleFullscreen()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="fan-notice">
+            This is a fan-made project. All rights to original properties belong to their respective owners (except Gabi, because she is my sunshine).
+        </div>
+    </div>
+
+    <div class="episode-selection" id="episode-selection">
+    </div>
+
+    <div class="custom-modal" id="custom-modal">
+        <div class="modal-content">
+            <p id="modal-message">btw maddie is a peddler of cheese</p>
+            <button id="modal-close-button" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+    
+    <div id="results-screen" class="results-screen">
+        <h1>Choices:</h1>
+        <div id="results-content" class="results-content">
+        </div>
+        <button class="return-button" onclick="returnToMainMenu()">Main Menu</button>
+    </div>
+
+    <script src="episodes.js"></script>
+    <script src="choices.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
